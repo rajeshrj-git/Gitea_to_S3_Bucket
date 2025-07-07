@@ -8,7 +8,7 @@ DB_NAME="YOUR_DB_NAME"  # eg:gitea
 DB_HOST="YOUR_HOST" #eg:localhost
 
 # Gitea Configuration
-GITEA_DATA_DIR="YOUR_GITEA_REPOS"  # eg :/var/lib/gitea
+GITEA_DATA_DIR="YOUR_GITEA_REPOS"  # eg :/var/lib/gitea/data/gitea-repositories
 
 
 # AWS S3 Configuration
