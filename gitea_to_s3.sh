@@ -2,7 +2,7 @@
 set -eo pipefail
 
 # configuration file
-CONFIG_FILE="${1:-./credential_config_1.sh}"
+CONFIG_FILE="${1:-./credential_config.sh}"
 
 
 # --------------------------
