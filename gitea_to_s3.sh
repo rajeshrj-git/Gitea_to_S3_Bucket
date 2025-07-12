@@ -11,19 +11,6 @@ CONFIG_FILE="${1:-./credential_config.sh}"
 
 if [[ ! -f "$CONFIG_FILE" ]]; then
     echo "❌ Critical Error: Configuration file '$CONFIG_FILE' not found" >&2
-    echo "💡 Create a configuration file with the following variables:" >&2
-    echo "   # Database Configuration" >&2
-    echo "   DB_USER=\"gitea\"" >&2
-    echo "   DB_PASS=\"your_password_here\"" >&2
-    echo "   DB_NAME=\"gitea\"" >&2
-    echo "   DB_HOST=\"localhost\"" >&2
-    echo "   GITEA_DATA_DIR=\"/var/lib/gitea\"" >&2
-    echo "   # AWS S3 Configuration" >&2
-    echo "   AWS_ACCESS_KEY_ID=\"your_aws_access_key\"" >&2
-    echo "   AWS_SECRET_ACCESS_KEY=\"your_aws_secret_key\"" >&2
-    echo "   AWS_DEFAULT_REGION=\"us-east-1\"" >&2
-    echo "   S3_BUCKET=\"your-bucket-name\"" >&2
-    echo "   S3_PATH=\"gitea-backups\"" >&2
     exit 1
 fi
 
@@ -43,7 +30,7 @@ done
 
 # Set defaults for optional variables
 DB_HOST="${DB_HOST:-localhost}"
-GITEA_DATA_DIR="${GITEA_DATA_DIR:-/var/lib/gitea}"
+REPO_DIR="${REPO_DIR:-/var/lib/gitea/data/gitea-repositories}"
 AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-us-east-1}"
 S3_PATH="${S3_PATH:-gitea-backups}"
 
@@ -57,7 +44,7 @@ BACKUP_NAME="gitea_backup_${TIMESTAMP}.zip"
 TMP_DIR=$(mktemp -d -t gitea_backup_XXXXXX)
 LOG_FILE="/data/ops_scripts/gitea_backup/backup.log"
 
-echo "TEMP directory will be created at $TMP_DIR"
+echo "TEMP directory will be created at : $TMP_DIR"
 
 # Function to cleanup on exit
 cleanup() {
