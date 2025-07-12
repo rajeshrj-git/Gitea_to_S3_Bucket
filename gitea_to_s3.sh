@@ -35,7 +35,7 @@ AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-us-east-1}"
 S3_PATH="${S3_PATH:-gitea-backups}"
 
 
-echo "TEMP directory will be created at : $TMP_DIR"
+
 
 # Function to cleanup on exit
 cleanup() {
@@ -57,6 +57,7 @@ echo "  - Database User: $DB_USER"
 echo "  - Database Name: $DB_NAME"
 echo "  - Database Host: $DB_HOST"
 echo "  - Repository Directory: $REPO_DIR"
+echo "  - TEMP directory will be created at : $TMP_DIR"
 echo "AWS S3 Configuration:"
 echo "  - S3 Bucket: $S3_BUCKET"
 echo "  - S3 Path: $S3_PATH"
