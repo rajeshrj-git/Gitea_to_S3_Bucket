@@ -55,7 +55,9 @@ REPO_DIR="$GITEA_DATA_DIR/data/gitea-repositories"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BACKUP_NAME="gitea_backup_${TIMESTAMP}.zip"
 TMP_DIR=$(mktemp -d -t gitea_backup_XXXXXX)
-LOG_FILE="/var/log/gitea_backup_${TIMESTAMP}.log"
+LOG_FILE="/data/ops_scripts/gitea_backup/backup.log"
+
+echo "TEMP directory will be created at $TMP_DIR"
 
 # Function to cleanup on exit
 cleanup() {
@@ -160,6 +162,7 @@ MYSQL_PWD="$DB_PASS" mysqldump \
     --single-transaction \
     --routines \
     --triggers \
+    --no-tablespaces \
     --add-drop-table \
     --disable-keys \
     --extended-insert \
@@ -194,7 +197,7 @@ fi
 # Upload to S3 (Modified)
 # --------------------------
 echo "☁️ Uploading backup to S3..."
-S3_FULL_PATH="s3://$S3_BUCKET/$S3_PATH/$BACKUP_NAME"
+S3_FULL_PATH="s3://$S3_BUCKET/$BACKUP_NAME"
 
 if ! AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
    AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
@@ -216,3 +219,4 @@ echo "   📦 Contents: Git repositories + MySQL database"
 
 echo "[$(date)] Backup process completed successfully"
 exit 0
+ 
