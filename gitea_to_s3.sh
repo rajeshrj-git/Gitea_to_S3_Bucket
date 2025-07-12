@@ -35,17 +35,13 @@ AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-us-east-1}"
 S3_PATH="${S3_PATH:-gitea-backups}"
 
 
+# Clean up old backups (keep last 2)
+ls -td /tmp/gitea_backup_* 2>/dev/null | tail -n +3 | xargs rm -rf 2>/dev/null || true
 
 # Function to cleanup on exit
-PREV_TEMP_DIR=$(ls -td /tmp/gitea_backup_* 2>/dev/null | head -1)
-
-# Modified cleanup
 cleanup() {
     local exit_code=$?
-    # Only delete if it's not our current directory
-    if [[ -d "$PREV_TEMP_DIR" && "$PREV_TEMP_DIR" != "$TMP_DIR" ]]; then
-        rm -rf "$PREV_TEMP_DIR"
-    fi
+    # We're not deleting $TMP_DIR here because we want to keep it
     exit $exit_code
 }
 trap cleanup EXIT
