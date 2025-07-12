@@ -36,16 +36,20 @@ S3_PATH="${S3_PATH:-gitea-backups}"
 
 
 
-
 # Function to cleanup on exit
+PREV_TEMP_DIR=$(ls -td /tmp/gitea_backup_* 2>/dev/null | head -1)
+
+# Modified cleanup
 cleanup() {
     local exit_code=$?
-    if [[ -d "$TMP_DIR" ]]; then
-        rm -rf "$TMP_DIR"
+    # Only delete if it's not our current directory
+    if [[ -d "$PREV_TEMP_DIR" && "$PREV_TEMP_DIR" != "$TMP_DIR" ]]; then
+        rm -rf "$PREV_TEMP_DIR"
     fi
     exit $exit_code
 }
 trap cleanup EXIT
+
 
 # --------------------------
 # Logging Setup
