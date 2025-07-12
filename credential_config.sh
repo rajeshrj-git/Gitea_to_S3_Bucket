@@ -2,13 +2,13 @@
 
 
 # Database Configuration
-DB_USER="DB_USER_NAME" #eg:gershon
-DB_PASS="YOUR_PASS"
+DB_USER="DB_USER_NAME" #eg:gitea_user
+DB_PASS="YOUR_PASS"  
 DB_NAME="YOUR_DB_NAME"  # eg:gitea_db
 DB_HOST="YOUR_HOST" #eg:localhost
 
 # Gitea Configuration
-GITEA_DATA_DIR="YOUR_GITEA_REPOS"  # eg :/var/lib/gitea
+REPO_DIR="GITEA_REPO_NAME" #/var/lib/gitea/data/gitea-repositories
 
 
 # AWS S3 Configuration
@@ -19,3 +19,8 @@ S3_BUCKET="YOUR_S3_BUCKET_NAME"
 S3_PATH="" #its not nessasary to fill this option
 
 
+
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+BACKUP_NAME="gitea_backup_${TIMESTAMP}.zip"
+TMP_DIR=$(mktemp -d -t gitea_backup_XXXXXX)
+LOG_FILE="YOUR_LOG_FILE_NAME.log"
