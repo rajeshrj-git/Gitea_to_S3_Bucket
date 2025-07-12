@@ -4,7 +4,7 @@
 # Database Configuration
 DB_USER="DB_USER_NAME" #eg:gershon
 DB_PASS="YOUR_PASS"
-DB_NAME="YOUR_DB_NAME"  # eg:gitea
+DB_NAME="YOUR_DB_NAME"  # eg:gitea_db
 DB_HOST="YOUR_HOST" #eg:localhost
 
 # Gitea Configuration
