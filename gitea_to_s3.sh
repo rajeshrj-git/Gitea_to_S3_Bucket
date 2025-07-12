@@ -2,7 +2,7 @@
 set -eo pipefail
 
 # configuration file
-CONFIG_FILE="${1:-./credentials.env}"
+CONFIG_FILE="${1:-./.env}"
 
 
 # --------------------------
