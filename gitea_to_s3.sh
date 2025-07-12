@@ -34,15 +34,6 @@ REPO_DIR="${REPO_DIR:-/var/lib/gitea/data/gitea-repositories}"
 AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-us-east-1}"
 S3_PATH="${S3_PATH:-gitea-backups}"
 
-# --------------------------
-# Initialize Backup Variables
-# --------------------------
-
-REPO_DIR="$GITEA_DATA_DIR/data/gitea-repositories"
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-BACKUP_NAME="gitea_backup_${TIMESTAMP}.zip"
-TMP_DIR=$(mktemp -d -t gitea_backup_XXXXXX)
-LOG_FILE="/data/ops_scripts/gitea_backup/backup.log"
 
 echo "TEMP directory will be created at : $TMP_DIR"
 
