@@ -69,5 +69,5 @@ echo ".env" >> .gitignore
 📆 Automation [Optional]
 #Cron Job (Daily at 12AM)
 
-0 2 * * * /path/to/Gitea_to_S3_Bucket/gitea_to_s3.sh >> /var/log/gitea_backup.log 2>&1
+0 12 * * * /path/to/Gitea_to_S3_Bucket/gitea_to_s3.sh >> /var/log/gitea_backup.log 2>&1
 
