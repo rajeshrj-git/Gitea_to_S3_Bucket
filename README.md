@@ -17,8 +17,8 @@ cp .env.example .env
 nano .env  # Add your credentials
 
 # Make executable and run
-chmod +x gitea_to_s3.sh
-./gitea_to_s3.sh
+sudo chmod +x gitea_to_s3.sh
+sudo ./gitea_to_s3.sh
 
 
 ## 🔧 Configuration:
